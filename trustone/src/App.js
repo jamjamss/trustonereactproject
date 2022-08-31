@@ -1,10 +1,22 @@
-import React, {component} from 'react';
-import { getCountyApi } from '../fetchApi';
+import React from 'react';
+import { getCountyApi } from './fetchApi';
 
-function App() {
+
+/* fetch data from external api */
+
+const App = () => {
+  
+  const [fetchedData, setFetchedData] = React.useState([])
+
+  React.useEffect(() => {
+    getCountyApi().then(({features}) => setFetchedData(features ));
+  }, []);
+
+
   return (
     <div className="App">
-      {/* fetch data from external api */}  
+      <pre>{JSON.stringify(fetchedData, null, 2)}</pre>
+
       </div>
   );
 }
